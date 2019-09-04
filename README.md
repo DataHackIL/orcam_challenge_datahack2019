@@ -28,7 +28,15 @@ submit('Team Name', submission)
 You are welcome to use any additional data and open-source libraries as you please. As well as manually tagging the data we provided here. 
 
 ##  The training data
-### [images.tar](data/images.tar) 
+### Download Links
+You can download the training data from:
+```
+https://datahack-2019.s3-eu-west-1.amazonaws.com/images.tar
+https://datahack-2019.s3-eu-west-1.amazonaws.com/pose.pkl
+https://datahack-2019.s3-eu-west-1.amazonaws.com/signatures.pkl
+```
+
+### [images.tar](https://datahack-2019.s3-eu-west-1.amazonaws.com/images.tar) 
 A tar file with all the image sequences. Files are divided by identity, video, and sequence as follows:
 ```bash
 person_0000/video_0000/seq_0000/frame_0000.jpg
@@ -46,7 +54,7 @@ with Images('data/images.tar') as images:
 # read image "person_0013/channel_0081/seq_0009/frame_00425.jpg"" of shape (64, 64, 3)
 ```
 
-### [pose.pkl](data/pose.pkl) 
+### [pose.pkl](https://datahack-2019.s3-eu-west-1.amazonaws.com/pose.pkl) 
 A pickle file with 17 pose keypoints detected for each frame along with the detection scores. As w rule of thumb, you should filter out points with score 0 or below. 
 ```python
 from data import read_pose
@@ -59,7 +67,7 @@ The pose points are ordered similarly to the data in the [MS COCO Keypoint detec
  "left_hip", "right_hip", "left_knee","right_knee", "left_ankle" "right_ankle"]
 ```
  
-### [signatures.pkl](data/signatures.pkl) 
+### [signatures.pkl](https://datahack-2019.s3-eu-west-1.amazonaws.com/signatures.pkl) 
 A pickle with a sampled set of imagenet signatures computed over the crops. The reason we are providing only a sample of the evaluations is that the full set of signatures will take up about X4 of the original images file. 
 ```python
 from data import read_signatures
@@ -68,6 +76,8 @@ paths, signatures = read_signatures('data/signatures.pkl')
 See our data visualization and solution demos to see an example of how to use this data. When you use these features make sure to use the "paths" to synchronize it with the rest of the data.
 
 ## The evaluation data
+*Will become available by Wednesday night*
+
 Evaluation data will have the same structure as the training data, except all paths will be stripped from the "person_####" folder. Note that the evaluation data may contain some additional identities, to make manual labeling less appealing. You will not be scored on these identities.
 
 ## Data Visualization
