@@ -48,7 +48,7 @@ def main(sigs_train, sigs_test):
     ranking = similarity_matrix.argsort(axis=1)
     submission = [line.tolist() for line in ranking[:, :-6:-1]]
 
-    # Compute and display top 1 / 5 accuracies
+    # submit to server, print reply (-1 means something is wrong)
     print(submit('naive', submission))
 
 
