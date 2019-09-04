@@ -46,7 +46,7 @@ def mean_signatures(signatures, indices):
     return mean_signatures
 
 
-def main(sigs_path, submission_path, train_to_test_ratio=0.5):
+def main(sigs_path, train_to_test_ratio=0.5):
     # Read the imagenet signatures from file
     paths, signatures = read_signatures(sigs_path)
     # Enumerate the frame paths based on person and video
@@ -84,9 +84,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Naive solution')
     parser.add_argument(
-        '--sigs_path',  help='path for signatures pkl', default='signatures.pkl')
-    parser.add_argument(
-        '--submission_path',  help='path for output submission', default='submission.csv')
+        '--sigs_path',  help='path for signatures pkl', default='data/signatures.pkl')
     parser.add_argument(
         '--train_to_test_ratio',  help='train to test ratio', type=float, default=0.5)
     args = parser.parse_args()

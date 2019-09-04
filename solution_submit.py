@@ -23,7 +23,7 @@ def mean_signatures(signatures, indices):
     return mean_signatures
 
 
-def main(sigs_train, sigs_test, submission_path, train_to_test_ratio=0.5):
+def main(sigs_train, sigs_test):
     # Read the imagenet signatures from file
     paths_train, train_sigs = read_signatures(sigs_train)
     paths_test, test_sigs = read_signatures(sigs_test)
@@ -60,10 +60,6 @@ if __name__ == '__main__':
         '--sigs_train',  help='path for train signatures pkl', default='data/signatures.pkl')
     parser.add_argument(
         '--sigs_test',  help='path for test signatures pkl', default='data/signatures_test.pkl')
-    parser.add_argument(
-        '--submission_path',  help='path for output submission', default='submission.csv')
-    parser.add_argument(
-        '--train_to_test_ratio',  help='train to test ratio', type=float, default=0.5)
     args = parser.parse_args()
 
     main(**vars(args))
