@@ -28,6 +28,7 @@ If you get a reply with a score of -1, it means something is wrong with your sub
 ## Leaderboard
 Check out the leaderboard at
 [https://leaderboard.datahack.org.il/orcam](https://leaderboard.datahack.org.il/orcam). 
+
 Results until thursday evening will be based on a "public" subset of the evaluation data. Thursday evening the leaderboard will be reset, and submissions will be evaluated based on the "private" subset. You don't have to change anything on your side.
 The winners will be the ones who reach Friday morning at the top of the table. 
 
