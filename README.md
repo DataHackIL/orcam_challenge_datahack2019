@@ -23,22 +23,35 @@ You can submit to the leaderboard by calling:
 from evaluate import submit
 submit('Team Name', submission)
 ```
+If you get a reply with a score of -1, it means something is wrong with your submission. Check the submission's shape matches the number of unique test sequences. Come see us if you need any help.
+
+## Leaderboard
+Check out the leaderboard at
+[https://leaderboard.datahack.org.il/orcam](https://leaderboard.datahack.org.il/orcam) 
+Results until thursday evening will be based on a "public" subset of the evaluation data. Thursday evening the leaderboard will be reset, and submissions will be evaluated based on the "private" subset. You don't have to change anything on your side.
+The winners will be the ones who reach Friday morning at the top of the table. 
+
 
 ## Rules
 You are welcome to use any additional data and open-source libraries as you please. As well as manually tagging the data we provided here. 
 
-##  The training data
-### Download Links
-You can download the training data from:
+## Data download links
+You can download the data from:
 ```
 https://datahack-2019.s3-eu-west-1.amazonaws.com/images.tar
 https://datahack-2019.s3-eu-west-1.amazonaws.com/pose.pkl
 https://datahack-2019.s3-eu-west-1.amazonaws.com/signatures.pkl
+https://datahack-2019.s3-eu-west-1.amazonaws.com/images_test.tar
+https://datahack-2019.s3-eu-west-1.amazonaws.com/pose_test.pkl
+https://datahack-2019.s3-eu-west-1.amazonaws.com/signatures_test.pkl
 ```
+Copy the data to the "datahack2019/data/..." to be able to run the example solutions.
+
+##  The training data
 
 ### [images.tar](https://datahack-2019.s3-eu-west-1.amazonaws.com/images.tar) 
 A tar file with all the image sequences. Files are divided by identity, video, and sequence as follows:
-```bash
+```
 person_0000/video_0000/seq_0000/frame_0000.jpg
 person_0000/video_0000/seq_0000/frame_0001.jpg
 ...
@@ -76,9 +89,13 @@ paths, signatures = read_signatures('data/signatures.pkl')
 See our data visualization and solution demos to see an example of how to use this data. When you use these features make sure to use the "paths" to synchronize it with the rest of the data.
 
 ## The evaluation data
-*Will become available by Wednesday night*
 
-Evaluation data will have the same structure as the training data, except all paths will be stripped from the "person_####" folder. Note that the evaluation data may contain some additional identities, to make manual labeling less appealing. You will not be scored on these identities.
+Evaluation data is similar to the train data, except we removed the person and video numbers from the paths. So evaluation paths look like this:
+```
+seq_0000/frame_0000.jpg
+seq_0000/frame_0001.jpg
+...
+```
 
 ## Data Visualization
 In this demo, use the [Tensorboard Embedding Projector](https://www.tensorflow.org/guide/embedding) to visualize our data, embedded based on the pre-computed imagenet signatures.
@@ -137,3 +154,11 @@ evaluate(submission, test_labels)
 # top 5 accuracy 46.55%
 # mean score: 40.09
 ```
+
+## Solution Demo With submit
+Based on the same solution, we also made available a solution that uses the entire train data for learning identities, evaluates on the test data and submits the solution to the server.
+Check it out by running "solution_submit.py". You should receive a result that look like this:
+```
+{u'member': u'naive', u'score': 22.289081885856078, u'rank': 14}
+```
+
