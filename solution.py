@@ -29,8 +29,12 @@ def train_test_split(person_ids, video_ids, train_to_test_ratio=0.5):
     train_indices = []
     test_indices = []
     for pid, cids, fidx in zip(person_ids, person_videos, frame_indices):
-        split_index = train_to_test_ratio * (cids[-1] - cids[0]) + cids[0]
-        is_train = cids <= split_index
+        unique_cids = np.arange(cids[0], cids[-1] + 1)
+        is_train = np.random.rand(len(unique_cids)) < train_to_test_ratio
+        if not np.any(is_train):
+            is_train[0] = True
+        is_train_dict = dict(zip(unique_cids, is_train))
+        is_train = np.array([is_train_dict[cid] for cid in cids])
         train_indices.append(fidx[is_train])
         test_indices.append(fidx[~ is_train])
     train_indices = np.hstack(train_indices)
